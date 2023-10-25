@@ -8,7 +8,7 @@ public class AreaCalculatorTests
     [Test]
     public void CalculateCircleArea()
     {
-        Circle circle = new Circle { Radius = 5 };
+        Circle circle = new Circle(5);
         double expectedArea = Math.PI * 5 * 5;
         double actualArea = circle.GetArea();
 
@@ -78,8 +78,8 @@ public class AreaCalculatorTests
     
     [Test]
     public void CalculateAreaCompileTime()
-    { 
-        IFigure shape1 = new Circle { Radius = 5 };
+    {
+        IFigure shape1 = new Circle(5);
         IFigure shape2 = new Triangle(3, 4, 5);
 
         double expectedCircleArea = 5 * 5 * Math.PI;
@@ -90,5 +90,16 @@ public class AreaCalculatorTests
 
         Assert.That(actualCircleArea, Is.EqualTo(expectedCircleArea).Within(1e-10));
         Assert.That(actualTriangleArea, Is.EqualTo(expectedTriangleArea));
+    }
+
+    [Test]
+    public void WrongArgumentsCheck()
+    {
+        Assert.Throws<ArgumentException>(() => new Circle(0));
+        Assert.Throws<ArgumentException>(() => new Circle(-12.1));
+        Assert.Throws<ArgumentException>(() => new Triangle(1,2,3));
+        Assert.Throws<ArgumentException>(() => new Triangle(0,2,3));
+        Assert.Throws<ArgumentException>(() => new Triangle(-3,-4,-5));
+        Assert.Throws<ArgumentException>(() => new Triangle(-3,4,5));
     }
 }

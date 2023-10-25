@@ -2,24 +2,24 @@
 
 public class Triangle : IFigure
 {
-    public Triangle(double SideA, double SideB, double SideC)
+    public Triangle(double sideA, double sideB, double sideC)
     {
-        if (SideA <= 0 || SideB <= 0 || SideC <= 0 ||
-            SideA + SideB <= SideC ||
-            SideA + SideC <= SideB ||
-            SideB + SideC <= SideA)
+        if (sideA <= 0 || sideB <= 0 || sideC <= 0 ||
+            sideA + sideB <= sideC ||
+            sideA + sideC <= sideB ||
+            sideB + sideC <= sideA)
         {
             throw new ArgumentException("Неккоректные длины сторон треугольника.");
         }
         
-        this.SideA = SideA;
-        this.SideB = SideB;
-        this.SideC = SideC;
+        SideA = sideA;
+        SideB = sideB;
+        SideC = sideC;
     }
     
-    public double SideA { get; set; }
-    public double SideB { get; set; }
-    public double SideC { get; set; }
+    public double SideA { get; }
+    public double SideB { get; }
+    public double SideC { get; }
 
     public double GetArea()
     {
